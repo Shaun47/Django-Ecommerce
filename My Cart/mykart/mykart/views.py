@@ -1,8 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from store.models import Product
 
 
 def my_view(request):
-    return render(request, 'index.html', {
-        'foo': 'bar',
-    })
+    products = Product.objects.all()
+    context = {
+        'products': products,
+    }
+    return render(request, 'index.html', context )
+    
